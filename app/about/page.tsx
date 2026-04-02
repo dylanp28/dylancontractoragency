@@ -2,57 +2,25 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Navbar } from '@/components/ui/navbar'
 import { Footer } from '@/components/ui/footer'
-import { ArrowRight, Zap, Shield, TrendingUp, Users } from 'lucide-react'
+import { ArrowRight, Clock, Shield, DollarSign, Headphones } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'About',
-  description: 'About Dylan Contractor Agency — a modern web development agency built for speed, quality, and volume.',
+  description: 'About Dylan Agency — a team of engineers who built a custom development platform to deliver professional websites and apps faster, cheaper, and with human oversight on every project.',
 }
 
 const values = [
-  {
-    icon: Zap,
-    title: 'Speed first',
-    description: 'We built our entire workflow around fast delivery. Every tool, every process, every decision optimizes for shipping quality work quickly.',
-  },
-  {
-    icon: Shield,
-    title: 'Quality you can measure',
-    description: 'Every site ships with Lighthouse 90+ across all categories. No exceptions. We use automated testing to ensure consistent quality.',
-  },
-  {
-    icon: TrendingUp,
-    title: 'Competitive pricing',
-    description: 'We pass our efficiency advantage directly to clients. Market-quality work at rates that undercut traditional agencies by up to 60%.',
-  },
-  {
-    icon: Users,
-    title: 'Always available',
-    description: 'Rush project? Weekend deadline? We operate without the scheduling bottlenecks of traditional teams. We\'re available when you need us.',
-  },
+  { icon: Clock, title: 'Days, not weeks', desc: 'Marketing sites in 4 days. Landing pages in 2. We ship fast because our platform is built for it.' },
+  { icon: Shield, title: 'Human oversight', desc: 'Every project is reviewed by experienced engineers. Lighthouse 90+ guaranteed.' },
+  { icon: DollarSign, title: 'Honest pricing', desc: 'Sites from $100. No surprise fees, no scope creep, no hourly billing.' },
+  { icon: Headphones, title: 'Built for small business', desc: 'Landscapers, contractors, salons, restaurants — we serve businesses that need a great site without the hassle.' },
 ]
 
-const processSteps = [
-  {
-    step: '1',
-    title: 'Intake & Scoping',
-    description: 'You describe your project. We assess requirements and return a fixed price and delivery date — same day.',
-  },
-  {
-    step: '2',
-    title: 'Build',
-    description: 'We build from battle-tested templates and patterns. No reinventing the wheel — just focused execution on your specific requirements.',
-  },
-  {
-    step: '3',
-    title: 'Review & QA',
-    description: 'Every project goes through automated quality checks: Lighthouse scoring, functionality testing, mobile/browser compatibility.',
-  },
-  {
-    step: '4',
-    title: 'Deploy & Handoff',
-    description: 'Deployed to Vercel with full delivery notes. You get a live URL, credentials, and everything you need to maintain and extend the site.',
-  },
+const steps = [
+  { num: '01', title: 'You describe it', desc: 'Share your project requirements.' },
+  { num: '02', title: 'We scope it', desc: 'Fixed price and timeline, same day.' },
+  { num: '03', title: 'We build it', desc: 'Focused execution on your specs.' },
+  { num: '04', title: 'We ship it', desc: 'Live URL, deployed and documented.' },
 ]
 
 export default function AboutPage() {
@@ -60,80 +28,128 @@ export default function AboutPage() {
     <>
       <Navbar />
       <main>
-        {/* Hero */}
-        <section className="bg-gradient-to-b from-gray-50 to-white pt-16 pb-20">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">Built for speed. Obsessed with quality.</h1>
-            <p className="text-xl text-gray-500 leading-relaxed">
-              Dylan Contractor Agency is a modern web development agency. We specialize in shipping
-              marketing sites, web apps, and APIs faster than anyone else — without compromising on quality or price.
-            </p>
-          </div>
-        </section>
 
-        {/* Mission */}
-        <section className="py-16 border-y border-gray-100">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-blue-600 rounded-3xl p-10 text-white">
-              <h2 className="text-2xl font-bold mb-4">Our mission</h2>
-              <p className="text-blue-100 text-lg leading-relaxed">
-                Traditional web agencies are slow, expensive, and hard to scale. We built a different kind of agency —
-                one that delivers the same quality work at 10x the throughput. Our clients get fast delivery,
-                transparent pricing, and a consistent quality bar they can count on, project after project.
+        {/* ── HERO ── */}
+        <section className="pt-36 pb-20 lg:pt-48 lg:pb-28">
+          <div className="max-w-7xl mx-auto px-8">
+            <div className="max-w-3xl">
+              <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: 'var(--accent)' }}>
+                About
+              </p>
+              <h1
+                className="text-4xl lg:text-5xl font-light leading-[1.1] tracking-tight mb-6"
+                style={{ fontFamily: 'var(--font-display), Georgia, serif' }}
+              >
+                Engineers who built<br />a better way.
+              </h1>
+              <p className="text-lg leading-relaxed" style={{ color: 'var(--fg-muted)' }}>
+                Our team of experienced engineers designed a custom development platform that lets us deliver production-quality websites and apps at a fraction of the traditional cost — with human oversight on every single project. The result: the same work that used to take weeks and cost thousands, done in days, starting at $100.
               </p>
             </div>
           </div>
         </section>
 
-        {/* Values */}
-        <section className="py-24">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">What we stand for</h2>
+        {/* ── MISSION ── */}
+        <section className="py-20 lg:py-24" style={{ background: 'var(--fg)' }}>
+          <div className="max-w-7xl mx-auto px-8">
+            <p
+              className="text-xl lg:text-2xl font-light leading-relaxed max-w-3xl"
+              style={{ fontFamily: 'var(--font-display), Georgia, serif', color: 'var(--bg)' }}
+            >
+              Small businesses deserve professional websites without the agency price tag. Our engineering team built a custom platform that handles the heavy lifting — so every project ships faster, costs less, and meets the same standard that companies used to spend <span style={{ color: 'var(--accent)' }}>thousands on. Human engineers review every build.</span>
+            </p>
+          </div>
+        </section>
+
+        {/* ── VALUES ── */}
+        <section className="py-24 lg:py-32">
+          <div className="max-w-7xl mx-auto px-8">
+            <div className="mb-12">
+              <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: 'var(--accent)' }}>
+                What drives us
+              </p>
+              <h2
+                className="text-3xl lg:text-4xl font-light tracking-tight"
+                style={{ fontFamily: 'var(--font-display), Georgia, serif' }}
+              >
+                Our values
+              </h2>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {values.map((v) => (
-                <div key={v.title} className="bg-white border border-gray-100 rounded-2xl p-8 shadow-sm">
-                  <div className="h-12 w-12 bg-blue-50 rounded-xl flex items-center justify-center mb-5">
-                    <v.icon className="h-6 w-6 text-blue-600" />
+                <div
+                  key={v.title}
+                  className="p-6 rounded-2xl"
+                  style={{ background: 'var(--bg-card)', border: '1px solid var(--border-light)' }}
+                >
+                  <div
+                    className="w-10 h-10 rounded-xl flex items-center justify-center mb-5"
+                    style={{ background: 'var(--accent-light)' }}
+                  >
+                    <v.icon className="h-5 w-5" style={{ color: 'var(--accent)' }} />
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{v.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{v.description}</p>
+                  <h3 className="text-base font-semibold mb-1">{v.title}</h3>
+                  <p className="text-[15px] leading-relaxed" style={{ color: 'var(--fg-muted)' }}>{v.desc}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Process */}
-        <section className="py-24 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Our process</h2>
-              <p className="text-lg text-gray-500">Repeatable, efficient, quality-controlled.</p>
+        {/* ── PROCESS ── */}
+        <section className="py-24 lg:py-32" style={{ background: 'var(--bg-alt)' }}>
+          <div className="max-w-7xl mx-auto px-8">
+            <div className="text-center mb-14">
+              <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: 'var(--accent)' }}>
+                How it works
+              </p>
+              <h2
+                className="text-3xl lg:text-4xl font-light tracking-tight"
+                style={{ fontFamily: 'var(--font-display), Georgia, serif' }}
+              >
+                Four simple steps
+              </h2>
             </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {processSteps.map((step) => (
-                <div key={step.step} className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-                  <div className="text-4xl font-bold text-blue-100 mb-4">{step.step}</div>
-                  <h3 className="font-semibold text-gray-900 mb-2">{step.title}</h3>
-                  <p className="text-sm text-gray-500 leading-relaxed">{step.description}</p>
+              {steps.map((s) => (
+                <div key={s.num} className="text-center">
+                  <div
+                    className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-sm font-semibold"
+                    style={{ background: 'var(--accent)', color: 'white' }}
+                  >
+                    {s.num}
+                  </div>
+                  <h3 className="text-base font-semibold mb-1">{s.title}</h3>
+                  <p className="text-[15px]" style={{ color: 'var(--fg-muted)' }}>{s.desc}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="py-24">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Let's work together</h2>
-            <p className="text-lg text-gray-500 mb-8">We take on new projects every week. Reach out and we'll respond same-day.</p>
-            <Link href="/contact" className="inline-flex items-center gap-2 bg-blue-600 text-white font-semibold px-6 py-3 rounded-xl hover:bg-blue-700 transition-colors">
-              Get in Touch <ArrowRight className="h-5 w-5" />
+        {/* ── CTA ── */}
+        <section className="py-24 lg:py-32">
+          <div className="max-w-7xl mx-auto px-8 text-center">
+            <h2
+              className="text-3xl lg:text-4xl font-light tracking-tight mb-4"
+              style={{ fontFamily: 'var(--font-display), Georgia, serif' }}
+            >
+              Let&apos;s work together
+            </h2>
+            <p className="text-base mb-8 max-w-md mx-auto" style={{ color: 'var(--fg-muted)' }}>
+              We take on new projects every week. Same-day response guaranteed.
+            </p>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold transition-all duration-200"
+              style={{ background: 'var(--fg)', color: 'var(--bg)' }}
+            >
+              Get in Touch <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </section>
+
       </main>
       <Footer />
     </>
