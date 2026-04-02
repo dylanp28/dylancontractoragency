@@ -8,14 +8,15 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        display: ['var(--font-display)', 'Georgia', 'serif'],
+        body: ['var(--font-body)', 'system-ui', 'sans-serif'],
+      },
       colors: {
-        brand: {
-          50: '#eff6ff',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-          900: '#1e3a8a',
-        },
+        bg: { DEFAULT: '#FAFAF8', alt: '#F5F0EB', card: '#FFFFFF' },
+        fg: { DEFAULT: '#191919', muted: '#6B6B6B', faint: '#9B9B9B' },
+        accent: { DEFAULT: '#CC785C', hover: '#B8674D', light: '#F5EDE8' },
+        border: { DEFAULT: '#E8E5E0', light: '#F0EDEA' },
       },
     },
   },

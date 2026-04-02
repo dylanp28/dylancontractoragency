@@ -2,83 +2,50 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Navbar } from '@/components/ui/navbar'
 import { Footer } from '@/components/ui/footer'
-import { ArrowRight, CheckCircle, Globe, Layers, Code2, Cpu } from 'lucide-react'
+import { AnimateOnScroll } from '@/components/ui/animate-on-scroll'
+import { ArrowRight, Globe, Layers, Code2, Zap, Check } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Services',
-  description: 'Web development services: marketing sites, web apps, landing pages, and API development. Fast delivery at competitive rates.',
+  description: 'Professional web development starting at $200. Marketing sites, web apps, landing pages, and APIs. Hosting included or code delivered. Built by engineers, delivered fast.',
 }
 
 const services = [
   {
-    icon: Globe,
-    id: 'marketing-sites',
-    name: 'Marketing Sites',
-    price: '$2,000 – $5,000',
-    delivery: '2 business days',
-    description: 'Professional marketing websites that convert visitors into customers. Built with Next.js 14, Tailwind CSS, and shadcn/ui for top performance and SEO.',
-    features: [
-      'Home, About, Services, Contact pages',
-      'Mobile-responsive design',
-      'Contact form (Resend-powered)',
-      'SEO meta tags & sitemap',
-      'Lighthouse 90+ scores',
-      'Vercel deployment',
-      'Analytics (PostHog) + error tracking (Sentry)',
-      '1 round of revision included',
-    ],
-    highlight: true,
-  },
-  {
     icon: Layers,
-    id: 'landing-pages',
     name: 'Landing Pages',
-    price: '$500 – $1,500',
-    delivery: '1 business day',
-    description: 'High-converting single-page campaigns. Perfect for product launches, promotions, or lead generation.',
-    features: [
-      'Single-page design',
-      'Hero + CTA sections',
-      'Lead capture form',
-      'Mobile-responsive',
-      'Fast load times (Core Web Vitals optimized)',
-      'Vercel deployment',
-    ],
+    price: '$200–750',
+    delivery: '2 days',
+    desc: 'A professional page for your business — perfect for contractors, salons, restaurants, and anyone who needs a web presence fast.',
+    features: ['Single page', 'Hero + CTA', 'Lead capture', 'Mobile-first', 'Fast load', 'Hosting available'],
+    popular: true,
   },
   {
-    icon: Cpu,
-    id: 'web-apps',
-    name: 'Web Applications',
-    price: '$5,000 – $15,000',
-    delivery: '5–10 business days',
-    description: 'Full-stack web applications with authentication, database, and business logic. Next.js 14 App Router with server components.',
-    features: [
-      'Next.js 14 + TypeScript',
-      'Authentication (NextAuth or Clerk)',
-      'Database integration (Postgres/Supabase)',
-      'REST or tRPC API layer',
-      'Admin dashboard (if needed)',
-      'CI/CD with GitHub Actions',
-      'Vercel deployment',
-      'Full test coverage',
-    ],
+    icon: Globe,
+    name: 'Marketing Sites',
+    price: '$1,000–2,500',
+    delivery: '4 days',
+    desc: 'Multi-page websites that turn visitors into customers. Ideal for service businesses ready to grow.',
+    features: ['5+ pages', 'Mobile-responsive', 'Contact form', 'SEO optimized', 'Lighthouse 90+', 'Hosting available'],
+    popular: false,
   },
   {
     icon: Code2,
-    id: 'apis',
+    name: 'Web Applications',
+    price: '$2,500–7,500',
+    delivery: '10–20 days',
+    desc: 'Full-stack apps with auth, database, and business logic — the kind of build that used to cost $30k+.',
+    features: ['Next.js + TS', 'Authentication', 'Database', 'API layer', 'Testing', 'CI/CD'],
+    popular: false,
+  },
+  {
+    icon: Zap,
     name: 'API Development',
-    price: '$3,000 – $8,000',
-    delivery: '3–5 business days',
-    description: 'RESTful or GraphQL APIs built for scale. Node.js/Express or Next.js API routes, with documentation and testing.',
-    features: [
-      'RESTful or GraphQL API',
-      'TypeScript + OpenAPI spec',
-      'Authentication & rate limiting',
-      'Database design and migrations',
-      'Automated tests',
-      'API documentation',
-      'Vercel or Railway deployment',
-    ],
+    price: '$1,500–4,000',
+    delivery: '6–10 days',
+    desc: 'RESTful or GraphQL APIs built for scale.',
+    features: ['REST or GraphQL', 'TypeScript', 'Auth + rate limits', 'DB design', 'Test suite', 'Documentation'],
+    popular: false,
   },
 ]
 
@@ -87,89 +54,183 @@ export default function ServicesPage() {
     <>
       <Navbar />
       <main>
-        {/* Hero */}
-        <section className="bg-gradient-to-b from-gray-50 to-white pt-16 pb-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">Services & Pricing</h1>
-            <p className="text-lg text-gray-500 max-w-2xl mx-auto">
-              Transparent pricing. Fast delivery. No retainers, no hourly billing surprises — just fixed-price projects delivered fast.
-            </p>
+
+        {/* ── HERO ── */}
+        <section className="pt-36 pb-20 lg:pt-48 lg:pb-28 relative overflow-hidden">
+          <div className="hero-orb hero-orb-2" />
+          <div className="max-w-7xl mx-auto px-8 relative z-10">
+            <div className="max-w-3xl">
+              <p className="text-xs font-semibold uppercase tracking-wider mb-3 animate-in" style={{ color: 'var(--accent)' }}>
+                Services
+              </p>
+              <h1
+                className="text-4xl lg:text-6xl font-light leading-[1.08] tracking-tight mb-6 animate-in"
+                style={{ fontFamily: 'var(--font-display), Georgia, serif' }}
+              >
+                Sites from <span className="gradient-text">$200.</span><br />No hidden fees.
+              </h1>
+              <p className="text-lg lg:text-xl leading-relaxed animate-in-delay-1" style={{ color: 'var(--fg-muted)' }}>
+                Our engineering team built a custom platform that delivers what agencies charge thousands for — in days, with human oversight on every project.
+              </p>
+            </div>
           </div>
         </section>
 
-        {/* Service cards */}
-        <section className="pb-24">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-            {services.map((s) => (
-              <div
-                key={s.id}
-                id={s.id}
-                className={`rounded-3xl border p-8 lg:p-10 ${s.highlight ? 'border-blue-200 bg-blue-50' : 'border-gray-100 bg-white'} shadow-sm`}
-              >
-                <div className="flex flex-col lg:flex-row gap-8">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className={`h-12 w-12 rounded-xl flex items-center justify-center ${s.highlight ? 'bg-blue-100' : 'bg-gray-100'}`}>
-                        <s.icon className={`h-6 w-6 ${s.highlight ? 'text-blue-600' : 'text-gray-600'}`} />
-                      </div>
-                      {s.highlight && (
-                        <span className="text-xs font-semibold bg-blue-600 text-white px-2.5 py-1 rounded-full">Most Popular</span>
-                      )}
-                    </div>
-                    <h2 className="text-2xl font-bold text-gray-900 mb-2">{s.name}</h2>
-                    <div className="flex items-baseline gap-3 mb-3">
-                      <span className="text-3xl font-bold text-gray-900">{s.price}</span>
-                      <span className="text-sm text-blue-600 font-medium">· Delivered in {s.delivery}</span>
-                    </div>
-                    <p className="text-gray-600 mb-6">{s.description}</p>
-                    <Link
-                      href="/contact"
-                      className="inline-flex items-center gap-2 bg-blue-600 text-white font-semibold px-5 py-2.5 rounded-xl hover:bg-blue-700 transition-colors text-sm"
+        {/* ── SERVICE CARDS ── */}
+        <section className="pb-24 lg:pb-32">
+          <div className="max-w-7xl mx-auto px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {services.map((s, i) => (
+                <AnimateOnScroll key={s.name} delay={i * 0.1}>
+                  <div
+                    className={`p-8 rounded-2xl relative ${s.popular ? 'card-glow' : 'card-hover'}`}
+                    style={{
+                      background: 'var(--bg-card)',
+                      border: s.popular ? '2px solid var(--accent)' : '1px solid var(--border-light)',
+                    }}
+                  >
+                    {s.popular && (
+                      <span
+                        className="absolute top-4 right-4 text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full"
+                        style={{ background: 'var(--accent-light)', color: 'var(--accent)' }}
+                      >
+                        Popular
+                      </span>
+                    )}
+                    <div
+                      className="w-10 h-10 rounded-xl flex items-center justify-center mb-5"
+                      style={{ background: 'var(--accent-light)' }}
                     >
-                      Get a Quote <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </div>
-                  <div className="lg:w-72">
-                    <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">What's included</h3>
-                    <ul className="space-y-2">
+                      <s.icon className="h-5 w-5" style={{ color: 'var(--accent)' }} />
+                    </div>
+                    <h2 className="text-xl font-semibold mb-1">{s.name}</h2>
+                    <div className="flex items-baseline gap-2 mb-3">
+                      <span className="text-2xl font-light gradient-text" style={{ fontFamily: 'var(--font-display), Georgia, serif' }}>
+                        {s.price}
+                      </span>
+                      <span className="text-sm" style={{ color: 'var(--fg-faint)' }}>
+                        &middot; {s.delivery}
+                      </span>
+                    </div>
+                    <p className="text-[15px] mb-6 leading-relaxed" style={{ color: 'var(--fg-muted)' }}>{s.desc}</p>
+                    <ul className="space-y-2.5 mb-6">
                       {s.features.map((f) => (
-                        <li key={f} className="flex items-start gap-2 text-sm text-gray-700">
-                          <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                        <li key={f} className="flex items-center gap-2.5 text-[15px]" style={{ color: 'var(--fg-muted)' }}>
+                          <div className="w-4 h-4 rounded-full flex items-center justify-center shrink-0" style={{ background: 'var(--accent-light)' }}>
+                            <Check className="h-2.5 w-2.5" style={{ color: 'var(--accent)' }} />
+                          </div>
                           {f}
                         </li>
                       ))}
                     </ul>
+                    <Link
+                      href="/contact"
+                      className="btn-shine inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200"
+                      style={{
+                        background: s.popular ? 'var(--accent)' : 'var(--fg)',
+                        color: 'var(--bg)',
+                      }}
+                    >
+                      Get a Quote <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
                   </div>
-                </div>
-              </div>
-            ))}
+                </AnimateOnScroll>
+              ))}
+            </div>
           </div>
         </section>
 
-        {/* FAQ / Process */}
-        <section className="py-24 bg-gray-50">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">How it works</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-10 text-left">
-              {[
-                { step: '01', title: 'Tell us your project', desc: 'Fill out the contact form with your requirements, timeline, and budget.' },
-                { step: '02', title: 'We scope and confirm', desc: 'We respond same-day with a fixed price and delivery date. No surprises.' },
-                { step: '03', title: 'We ship it', desc: 'You get a live, production-ready site delivered to your specs, on time.' },
-              ].map((item) => (
-                <div key={item.step} className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-                  <div className="text-3xl font-bold text-blue-600 mb-3">{item.step}</div>
-                  <h3 className="font-semibold text-gray-900 mb-2">{item.title}</h3>
-                  <p className="text-sm text-gray-500">{item.desc}</p>
+        {/* ── DELIVERY OPTIONS ── */}
+        <AnimateOnScroll>
+          <section className="pb-24 lg:pb-32">
+            <div className="max-w-7xl mx-auto px-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div
+                  className="p-8 rounded-2xl card-hover"
+                  style={{ background: 'var(--bg-card)', border: '1px solid var(--border-light)' }}
+                >
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style={{ background: 'var(--accent-light)' }}>
+                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-semibold mb-2">Done-for-you hosting</h3>
+                  <p className="text-[15px] leading-relaxed mb-3" style={{ color: 'var(--fg-muted)' }}>
+                    We deploy your site, manage updates, and keep it running. Small monthly retainer — you never touch a line of code.
+                  </p>
+                  <span className="text-sm font-semibold" style={{ color: 'var(--accent)' }}>Perfect for non-technical teams</span>
                 </div>
+                <div
+                  className="p-8 rounded-2xl card-hover"
+                  style={{ background: 'var(--bg-card)', border: '1px solid var(--border-light)' }}
+                >
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style={{ background: 'var(--accent-light)' }}>
+                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" />
+                      <polyline points="14 2 14 8 20 8" />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-semibold mb-2">Code delivery</h3>
+                  <p className="text-[15px] leading-relaxed mb-3" style={{ color: 'var(--fg-muted)' }}>
+                    We hand you the finished project — full source code, documentation, and deployment guide. Host it anywhere you want.
+                  </p>
+                  <span className="text-sm font-semibold" style={{ color: 'var(--accent)' }}>Full ownership, no lock-in</span>
+                </div>
+              </div>
+            </div>
+          </section>
+        </AnimateOnScroll>
+
+        {/* ── HOW IT WORKS ── */}
+        <section className="py-24 lg:py-32" style={{ background: 'var(--bg-alt)' }}>
+          <div className="max-w-7xl mx-auto px-8">
+            <AnimateOnScroll>
+              <div className="text-center mb-14">
+                <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: 'var(--accent)' }}>
+                  Simple process
+                </p>
+                <h2
+                  className="text-3xl lg:text-4xl font-light tracking-tight"
+                  style={{ fontFamily: 'var(--font-display), Georgia, serif' }}
+                >
+                  How it works
+                </h2>
+              </div>
+            </AnimateOnScroll>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                { num: '1', title: 'Tell us what you need', desc: 'A quick form — describe your business and what you are looking for.' },
+                { num: '2', title: 'Fixed price, same day', desc: 'We respond with a clear quote and timeline. No back-and-forth.' },
+                { num: '3', title: 'We build and deliver', desc: 'Your site goes live — hosted and managed by us, or delivered as code you own.' },
+              ].map((step, i) => (
+                <AnimateOnScroll key={step.num} delay={i * 0.12}>
+                  <div className="text-center">
+                    <div
+                      className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-sm font-semibold transition-transform duration-300 hover:scale-110"
+                      style={{ background: 'var(--accent)', color: 'white' }}
+                    >
+                      {step.num}
+                    </div>
+                    <h3 className="text-base font-semibold mb-1">{step.title}</h3>
+                    <p className="text-sm" style={{ color: 'var(--fg-muted)' }}>{step.desc}</p>
+                  </div>
+                </AnimateOnScroll>
               ))}
             </div>
-            <div className="mt-10">
-              <Link href="/contact" className="inline-flex items-center gap-2 bg-blue-600 text-white font-semibold px-6 py-3 rounded-xl hover:bg-blue-700 transition-colors">
-                Start a Project <ArrowRight className="h-5 w-5" />
-              </Link>
-            </div>
+            <AnimateOnScroll delay={0.3}>
+              <div className="text-center mt-12">
+                <Link
+                  href="/contact"
+                  className="btn-shine inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold transition-all duration-200"
+                  style={{ background: 'var(--fg)', color: 'var(--bg)' }}
+                >
+                  Start a Project <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </AnimateOnScroll>
           </div>
         </section>
+
       </main>
       <Footer />
     </>

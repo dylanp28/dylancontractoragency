@@ -2,136 +2,167 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Navbar } from '@/components/ui/navbar'
 import { Footer } from '@/components/ui/footer'
-import { ArrowRight, Star, Clock, TrendingUp } from 'lucide-react'
+import { AnimateOnScroll } from '@/components/ui/animate-on-scroll'
+import { ArrowRight, Check } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Portfolio',
   description: 'See our delivered projects. Real clients, real results — marketing sites and web apps shipped fast.',
 }
 
-const projects = [
-  {
-    id: 'novaspark',
-    name: 'NovaSpark',
-    type: 'Marketing Site',
-    status: 'Delivered',
-    description: 'Full marketing site for a SaaS startup. Hero, features, pricing, contact — all delivered in 2 days.',
-    longDescription: 'NovaSpark needed a professional marketing site to launch their product. We built a complete 5-page site using Next.js 14 and Tailwind CSS, with a Resend-powered contact form, full SEO optimization, and deployment to Vercel.',
-    tech: ['Next.js 14', 'TypeScript', 'Tailwind CSS', 'Resend', 'PostHog', 'Sentry', 'Vercel'],
-    deliveredIn: '2 days',
-    lighthouse: { performance: 94, accessibility: 98, bestPractices: 100, seo: 100 },
-    highlights: [
-      'Delivered 60% under the 5-day budget',
-      'Lighthouse 94/98/100/100 scores',
-      'Full contact form with email forwarding',
-      'SEO-optimized for SaaS keywords',
-    ],
-    gradient: 'from-blue-600 to-indigo-700',
-  },
-]
-
 export default function PortfolioPage() {
   return (
     <>
       <Navbar />
       <main>
-        {/* Hero */}
-        <section className="bg-gradient-to-b from-gray-50 to-white pt-16 pb-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">Our Work</h1>
-            <p className="text-lg text-gray-500 max-w-2xl mx-auto">
-              Every project ships on time, on budget, and with production-quality code.
-            </p>
+
+        {/* ── HERO ── */}
+        <section className="pt-36 pb-20 lg:pt-48 lg:pb-28 relative overflow-hidden">
+          <div className="hero-orb hero-orb-1" />
+          <div className="max-w-7xl mx-auto px-8 relative z-10">
+            <div className="max-w-3xl">
+              <p className="text-xs font-semibold uppercase tracking-wider mb-3 animate-in" style={{ color: 'var(--accent)' }}>
+                Portfolio
+              </p>
+              <h1
+                className="text-4xl lg:text-6xl font-light leading-[1.08] tracking-tight mb-6 animate-in"
+                style={{ fontFamily: 'var(--font-display), Georgia, serif' }}
+              >
+                Our work speaks<br />for itself.
+              </h1>
+              <p className="text-lg lg:text-xl leading-relaxed animate-in-delay-1" style={{ color: 'var(--fg-muted)' }}>
+                Every project ships on time, on budget, and with production-quality code.
+              </p>
+            </div>
           </div>
         </section>
 
-        {/* Projects */}
-        <section className="pb-24">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-            {projects.map((project) => (
-              <article key={project.id} className="rounded-3xl overflow-hidden border border-gray-100 shadow-sm">
+        {/* ── NOVASPARK CASE STUDY ── */}
+        <AnimateOnScroll>
+          <section className="pb-24 lg:pb-32">
+            <div className="max-w-7xl mx-auto px-8">
+              <div className="rounded-2xl overflow-hidden" style={{ border: '1px solid var(--border-light)', boxShadow: '0 16px 48px -12px rgba(25, 25, 25, 0.08)' }}>
                 {/* Header */}
-                <div className={`bg-gradient-to-br ${project.gradient} p-10 text-white`}>
-                  <div className="flex flex-col md:flex-row items-start justify-between gap-6">
+                <div className="p-8 lg:p-12 relative" style={{ background: 'var(--fg)' }}>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
                     <div>
-                      <div className="flex items-center gap-2 mb-3">
-                        <span className="text-xs font-semibold bg-white/20 px-2.5 py-1 rounded-full">{project.type}</span>
-                        <span className="text-xs font-semibold bg-green-400/20 text-green-100 px-2.5 py-1 rounded-full flex items-center gap-1">
-                          <Star className="h-3 w-3" /> {project.status}
+                      <div className="flex items-center gap-2 mb-6">
+                        <span
+                          className="text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full"
+                          style={{ border: '1px solid rgba(250,250,248,0.2)', color: 'rgba(250,250,248,0.5)' }}
+                        >
+                          Marketing Site
+                        </span>
+                        <span
+                          className="text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full"
+                          style={{ background: 'rgba(204,120,92,0.2)', color: 'var(--accent)' }}
+                        >
+                          Delivered
                         </span>
                       </div>
-                      <h2 className="text-3xl font-bold mb-3">{project.name}</h2>
-                      <p className="text-blue-100 max-w-xl">{project.longDescription}</p>
-                    </div>
-                    <div className="flex items-center gap-2 bg-white/10 px-4 py-3 rounded-xl whitespace-nowrap">
-                      <Clock className="h-5 w-5 text-blue-200" />
-                      <span className="text-sm font-semibold">Delivered in {project.deliveredIn}</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Body */}
-                <div className="bg-white p-10">
-                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-                    {/* Highlights */}
-                    <div className="lg:col-span-2">
-                      <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">Highlights</h3>
-                      <ul className="space-y-3">
-                        {project.highlights.map((h) => (
-                          <li key={h} className="flex items-start gap-3">
-                            <TrendingUp className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                            <span className="text-gray-700">{h}</span>
-                          </li>
+                      <h2
+                        className="text-4xl lg:text-5xl font-light tracking-tight mb-4"
+                        style={{ fontFamily: 'var(--font-display), Georgia, serif', color: 'var(--bg)' }}
+                      >
+                        NovaSpark
+                      </h2>
+                      <p className="text-base leading-relaxed mb-6" style={{ color: 'rgba(250,250,248,0.6)' }}>
+                        Full marketing site for a SaaS startup preparing for their Product Hunt launch. 5 pages, contact form, full SEO.
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {['Next.js 14', 'Tailwind', 'Resend', 'Vercel'].map((t) => (
+                          <span
+                            key={t}
+                            className="text-xs font-medium px-3 py-1 rounded-full transition-colors duration-200"
+                            style={{ border: '1px solid rgba(250,250,248,0.12)', color: 'rgba(250,250,248,0.45)' }}
+                          >
+                            {t}
+                          </span>
                         ))}
-                      </ul>
-                      <div className="mt-6">
-                        <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Tech Stack</h3>
-                        <div className="flex flex-wrap gap-2">
-                          {project.tech.map((t) => (
-                            <span key={t} className="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-1.5 rounded-lg">{t}</span>
-                          ))}
-                        </div>
                       </div>
                     </div>
 
-                    {/* Lighthouse scores */}
-                    <div>
-                      <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">Lighthouse Scores</h3>
-                      <div className="space-y-3">
-                        {Object.entries(project.lighthouse).map(([key, score]) => {
-                          const labels: Record<string, string> = {
-                            performance: 'Performance',
-                            accessibility: 'Accessibility',
-                            bestPractices: 'Best Practices',
-                            seo: 'SEO',
-                          }
-                          const color = score >= 90 ? 'text-green-600' : score >= 50 ? 'text-yellow-600' : 'text-red-600'
-                          return (
-                            <div key={key} className="flex items-center justify-between bg-gray-50 rounded-xl px-4 py-3">
-                              <span className="text-sm text-gray-600">{labels[key]}</span>
-                              <span className={`text-xl font-bold ${color}`}>{score}</span>
+                    {/* Scores */}
+                    <div className="grid grid-cols-2 gap-3">
+                      {[
+                        { label: 'Performance', score: 94 },
+                        { label: 'Accessibility', score: 98 },
+                        { label: 'Best Practices', score: 100 },
+                        { label: 'SEO', score: 100 },
+                      ].map((m, i) => (
+                        <AnimateOnScroll key={m.label} delay={i * 0.08}>
+                          <div
+                            className="p-5 rounded-xl text-center transition-all duration-300 hover:scale-105"
+                            style={{ background: 'rgba(250,250,248,0.06)' }}
+                          >
+                            <div
+                              className="text-3xl font-light mb-1"
+                              style={{
+                                fontFamily: 'var(--font-display), Georgia, serif',
+                                color: m.score === 100 ? 'var(--accent)' : 'var(--bg)',
+                              }}
+                            >
+                              {m.score}
                             </div>
-                          )
-                        })}
-                      </div>
+                            <div className="text-xs" style={{ color: 'rgba(250,250,248,0.4)' }}>{m.label}</div>
+                          </div>
+                        </AnimateOnScroll>
+                      ))}
                     </div>
                   </div>
                 </div>
-              </article>
-            ))}
-          </div>
-        </section>
 
-        {/* CTA */}
-        <section className="py-24 bg-gray-50">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Want results like these?</h2>
-            <p className="text-lg text-gray-500 mb-8">Tell us about your project and we'll have a quote to you same-day.</p>
-            <Link href="/contact" className="inline-flex items-center gap-2 bg-blue-600 text-white font-semibold px-6 py-3 rounded-xl hover:bg-blue-700 transition-colors">
-              Start Your Project <ArrowRight className="h-5 w-5" />
-            </Link>
-          </div>
-        </section>
+                {/* Highlights */}
+                <div className="p-8 lg:p-12" style={{ background: 'var(--bg-card)' }}>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {[
+                      'Delivered in 2 days',
+                      '60% under budget',
+                      'Full contact form with email',
+                      'SEO-optimized for SaaS keywords',
+                    ].map((h, i) => (
+                      <AnimateOnScroll key={h} delay={i * 0.06}>
+                        <div className="flex items-start gap-2">
+                          <div className="w-4 h-4 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ background: 'var(--accent-light)' }}>
+                            <Check className="h-2.5 w-2.5" style={{ color: 'var(--accent)' }} />
+                          </div>
+                          <span className="text-[15px]" style={{ color: 'var(--fg-muted)' }}>{h}</span>
+                        </div>
+                      </AnimateOnScroll>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </AnimateOnScroll>
+
+        {/* ── MORE COMING ── */}
+        <AnimateOnScroll>
+          <section className="pb-24 lg:pb-32">
+            <div className="max-w-7xl mx-auto px-8 text-center">
+              <div className="py-16 rounded-2xl relative overflow-hidden" style={{ background: 'var(--bg-alt)' }}>
+                <p
+                  className="text-xl font-light mb-4"
+                  style={{ fontFamily: 'var(--font-display), Georgia, serif' }}
+                >
+                  More case studies coming soon
+                </p>
+                <p className="text-sm mb-6" style={{ color: 'var(--fg-muted)' }}>
+                  We&apos;re actively delivering projects. Check back for updates.
+                </p>
+                <Link
+                  href="/contact"
+                  className="btn-shine inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold transition-all duration-200"
+                  style={{ background: 'var(--fg)', color: 'var(--bg)' }}
+                >
+                  Start Your Project <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </div>
+          </section>
+        </AnimateOnScroll>
+
       </main>
       <Footer />
     </>

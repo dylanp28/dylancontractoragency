@@ -6,10 +6,10 @@ import { Send, Loader2, CheckCircle } from 'lucide-react'
 type Status = 'idle' | 'loading' | 'success' | 'error'
 
 const services = [
-  'Marketing Site ($2,000–5,000)',
-  'Landing Page ($500–1,500)',
-  'Web Application ($5,000–15,000)',
-  'API Development ($3,000–8,000)',
+  'Landing Page',
+  'Marketing Site',
+  'Web Application',
+  'API Development',
   'Not sure yet',
 ]
 
@@ -50,77 +50,123 @@ export function ContactForm() {
 
   if (status === 'success') {
     return (
-      <div className="bg-green-50 border border-green-200 rounded-2xl p-10 text-center">
-        <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-4" />
-        <h3 className="text-xl font-bold text-gray-900 mb-2">Message sent!</h3>
-        <p className="text-gray-600">We'll get back to you with a quote same-day.</p>
+      <div className="py-16 text-center">
+        <div
+          className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5"
+          style={{ background: 'var(--accent-light)' }}
+        >
+          <CheckCircle className="h-7 w-7" style={{ color: 'var(--accent)' }} />
+        </div>
+        <h3
+          className="text-xl font-light mb-2"
+          style={{ fontFamily: 'var(--font-display), Georgia, serif' }}
+        >
+          Message sent
+        </h3>
+        <p className="text-sm" style={{ color: 'var(--fg-muted)' }}>
+          We&apos;ll respond with a quote same-day.
+        </p>
       </div>
     )
   }
 
+  const inputClass = "w-full px-4 py-3.5 text-[15px] rounded-xl bg-transparent outline-none transition-colors duration-200"
+  const inputStyle: React.CSSProperties = {
+    border: '1px solid var(--border)',
+    color: 'var(--fg)',
+  }
+
   return (
-    <form onSubmit={handleSubmit} className="bg-white border border-gray-100 rounded-2xl p-8 shadow-sm space-y-5">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+    <form onSubmit={handleSubmit} className="space-y-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1.5">Name *</label>
+          <label htmlFor="name" className="block text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: 'var(--fg-faint)' }}>
+            Name
+          </label>
           <input
             id="name"
             name="name"
             type="text"
             required
             placeholder="Your name"
-            className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className={inputClass}
+            style={inputStyle}
+            onFocus={e => (e.currentTarget.style.borderColor = 'var(--accent)')}
+            onBlur={e => (e.currentTarget.style.borderColor = 'var(--border)')}
           />
         </div>
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1.5">Email *</label>
+          <label htmlFor="email" className="block text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: 'var(--fg-faint)' }}>
+            Email
+          </label>
           <input
             id="email"
             name="email"
             type="email"
             required
             placeholder="you@company.com"
-            className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className={inputClass}
+            style={inputStyle}
+            onFocus={e => (e.currentTarget.style.borderColor = 'var(--accent)')}
+            onBlur={e => (e.currentTarget.style.borderColor = 'var(--border)')}
           />
         </div>
       </div>
 
       <div>
-        <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-1.5">Service needed</label>
+        <label htmlFor="service" className="block text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: 'var(--fg-faint)' }}>
+          Service
+        </label>
         <select
           id="service"
           name="service"
-          className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className={inputClass}
+          style={{ ...inputStyle, cursor: 'pointer' }}
+          onFocus={e => (e.currentTarget.style.borderColor = 'var(--accent)')}
+          onBlur={e => (e.currentTarget.style.borderColor = 'var(--border)')}
         >
           {services.map((s) => <option key={s} value={s}>{s}</option>)}
         </select>
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1.5">Project details *</label>
+        <label htmlFor="message" className="block text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: 'var(--fg-faint)' }}>
+          Project details
+        </label>
         <textarea
           id="message"
           name="message"
           required
-          rows={5}
-          placeholder="Tell us about your project: what you need, your timeline, any existing design assets or references..."
-          className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+          rows={4}
+          placeholder="What do you need? Timeline, budget, design references..."
+          className={inputClass}
+          style={{ ...inputStyle, resize: 'none' }}
+          onFocus={e => (e.currentTarget.style.borderColor = 'var(--accent)')}
+          onBlur={e => (e.currentTarget.style.borderColor = 'var(--border)')}
         />
       </div>
 
       {status === 'error' && (
-        <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-xl px-4 py-3">{error}</p>
+        <p className="text-sm px-4 py-3 rounded-xl" style={{ color: 'var(--accent)', background: 'var(--accent-light)' }}>
+          {error}
+        </p>
       )}
 
       <button
         type="submit"
         disabled={status === 'loading'}
-        className="w-full flex items-center justify-center gap-2 bg-blue-600 text-white font-semibold px-6 py-3.5 rounded-xl hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
+        className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-full text-sm font-semibold transition-all duration-200"
+        style={{
+          background: 'var(--fg)',
+          color: 'var(--bg)',
+          opacity: status === 'loading' ? 0.6 : 1,
+          cursor: status === 'loading' ? 'not-allowed' : 'pointer',
+        }}
       >
         {status === 'loading' ? (
-          <><Loader2 className="h-5 w-5 animate-spin" /> Sending...</>
+          <><Loader2 className="h-4 w-4 animate-spin" /> Sending...</>
         ) : (
-          <><Send className="h-5 w-5" /> Send Message</>
+          <><Send className="h-4 w-4" /> Send Message</>
         )}
       </button>
     </form>
