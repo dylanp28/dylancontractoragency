@@ -163,16 +163,16 @@ export default function HomePage() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: 'var(--accent)' }}>
-                    Case Study
+                    Case Studies
                   </p>
                   <h2
                     className="text-3xl lg:text-5xl font-light tracking-tight mb-6"
                     style={{ fontFamily: 'var(--font-display), Georgia, serif', color: 'var(--bg)' }}
                   >
-                    NovaSpark
+                    NovaSpark &amp; Ember&nbsp;&amp;&nbsp;Oak
                   </h2>
                   <p className="text-base leading-relaxed mb-8" style={{ color: 'rgba(250,250,248,0.6)' }}>
-                    Full marketing site for a SaaS startup. Delivered in days, not weeks — at a fraction of typical agency cost.
+                    A SaaS marketing site and a restaurant landing page — two projects, two industries, one standard: delivered fast, built to last.
                   </p>
                   <div className="flex flex-wrap gap-2 mb-8">
                     {['Next.js', 'Tailwind', 'Vercel'].map((t) => (

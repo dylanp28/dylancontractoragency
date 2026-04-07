@@ -137,7 +137,107 @@ export default function PortfolioPage() {
           </section>
         </AnimateOnScroll>
 
-        {/* ── MORE COMING ── */}
+        {/* ── EMBER & OAK CASE STUDY ── */}
+        <AnimateOnScroll>
+          <section className="pb-24 lg:pb-32">
+            <div className="max-w-7xl mx-auto px-8">
+              <div className="rounded-2xl overflow-hidden" style={{ border: '1px solid var(--border-light)', boxShadow: '0 16px 48px -12px rgba(25, 25, 25, 0.08)' }}>
+                {/* Header */}
+                <div className="p-8 lg:p-12 relative" style={{ background: 'linear-gradient(135deg, #2d1a0a 0%, #1a0f06 100%)' }}>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                    <div>
+                      <div className="flex items-center gap-2 mb-6">
+                        <span
+                          className="text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full"
+                          style={{ border: '1px solid rgba(250,250,248,0.2)', color: 'rgba(250,250,248,0.5)' }}
+                        >
+                          Restaurant Landing Page
+                        </span>
+                        <span
+                          className="text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full"
+                          style={{ background: 'rgba(204,120,92,0.2)', color: 'var(--accent)' }}
+                        >
+                          Delivered
+                        </span>
+                      </div>
+                      <h2
+                        className="text-4xl lg:text-5xl font-light tracking-tight mb-4"
+                        style={{ fontFamily: 'var(--font-display), Georgia, serif', color: 'var(--bg)' }}
+                      >
+                        Ember &amp; Oak
+                      </h2>
+                      <p className="text-base leading-relaxed mb-6" style={{ color: 'rgba(250,250,248,0.6)' }}>
+                        Farm-to-table restaurant landing page with interactive menu, reservation form, reviews section, and mobile-first design. Exactly the kind of site we deliver for local businesses at a fraction of agency cost.
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {['Next.js 14', 'Tailwind', 'Vercel', 'Static Export'].map((t) => (
+                          <span
+                            key={t}
+                            className="text-xs font-medium px-3 py-1 rounded-full transition-colors duration-200"
+                            style={{ border: '1px solid rgba(250,250,248,0.12)', color: 'rgba(250,250,248,0.45)' }}
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Scores */}
+                    <div className="grid grid-cols-2 gap-3">
+                      {[
+                        { label: 'Performance', score: 97 },
+                        { label: 'Accessibility', score: 96 },
+                        { label: 'Best Practices', score: 100 },
+                        { label: 'SEO', score: 100 },
+                      ].map((m, i) => (
+                        <AnimateOnScroll key={m.label} delay={i * 0.08}>
+                          <div
+                            className="p-5 rounded-xl text-center transition-all duration-300 hover:scale-105"
+                            style={{ background: 'rgba(250,250,248,0.06)' }}
+                          >
+                            <div
+                              className="text-3xl font-light mb-1"
+                              style={{
+                                fontFamily: 'var(--font-display), Georgia, serif',
+                                color: m.score === 100 ? 'var(--accent)' : 'var(--bg)',
+                              }}
+                            >
+                              {m.score}
+                            </div>
+                            <div className="text-xs" style={{ color: 'rgba(250,250,248,0.4)' }}>{m.label}</div>
+                          </div>
+                        </AnimateOnScroll>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Highlights */}
+                <div className="p-8 lg:p-12" style={{ background: 'var(--bg-card)' }}>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {[
+                      'Delivered in 3 days',
+                      'Interactive menu with tabs',
+                      'Reservation form built-in',
+                      'Mobile-first, fully responsive',
+                    ].map((h, i) => (
+                      <AnimateOnScroll key={h} delay={i * 0.06}>
+                        <div className="flex items-start gap-2">
+                          <div className="w-4 h-4 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ background: 'var(--accent-light)' }}>
+                            <Check className="h-2.5 w-2.5" style={{ color: 'var(--accent)' }} />
+                          </div>
+                          <span className="text-[15px]" style={{ color: 'var(--fg-muted)' }}>{h}</span>
+                        </div>
+                      </AnimateOnScroll>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </AnimateOnScroll>
+
+        {/* ── CTA ── */}
         <AnimateOnScroll>
           <section className="pb-24 lg:pb-32">
             <div className="max-w-7xl mx-auto px-8 text-center">
@@ -146,10 +246,10 @@ export default function PortfolioPage() {
                   className="text-xl font-light mb-4"
                   style={{ fontFamily: 'var(--font-display), Georgia, serif' }}
                 >
-                  More case studies coming soon
+                  Ready to be our next case study?
                 </p>
                 <p className="text-sm mb-6" style={{ color: 'var(--fg-muted)' }}>
-                  We&apos;re actively delivering projects. Check back for updates.
+                  We&apos;re taking on new projects now. Fixed pricing, fast delivery, no surprises.
                 </p>
                 <Link
                   href="/contact"
