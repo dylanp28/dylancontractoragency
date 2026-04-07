@@ -1,17 +1,23 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { Resend } from 'resend'
 
 export async function POST(request: NextRequest) {
-  const resend = new Resend(process.env.RESEND_API_KEY)
-  try {
-    const { name, email, message } = await request.json()
+  const { name, email, message } = await request.json()
 
-    if (!name || !email || !message) {
-      return NextResponse.json(
-        { error: 'Missing required fields: name, email, message' },
-        { status: 400 }
-      )
-    }
+  if (!name || !email || !message) {
+    return NextResponse.json(
+      { error: 'Missing required fields: name, email, message' },
+      { status: 400 }
+    )
+  }
+
+  if (!process.env.RESEND_API_KEY) {
+    // No Resend key configured — signal the client to use mailto: fallback
+    return NextResponse.json({ mailto: true })
+  }
+
+  try {
+    const { Resend } = await import('resend')
+    const resend = new Resend(process.env.RESEND_API_KEY)
 
     await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL!,

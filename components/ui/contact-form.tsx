@@ -5,6 +5,8 @@ import { Send, Loader2, CheckCircle } from 'lucide-react'
 
 type Status = 'idle' | 'loading' | 'success' | 'error'
 
+const CONTACT_EMAIL = 'hello@example.com'
+
 const services = [
   'Landing Page',
   'Marketing Site',
@@ -12,6 +14,14 @@ const services = [
   'API Development',
   'Not sure yet',
 ]
+
+function buildMailtoLink(name: string, email: string, service: string, message: string) {
+  const subject = encodeURIComponent(`Project inquiry from ${name}`)
+  const body = encodeURIComponent(
+    `Name: ${name}\nEmail: ${email}\nService: ${service}\n\nProject details:\n${message}`
+  )
+  return `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`
+}
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>('idle')
@@ -23,10 +33,14 @@ export function ContactForm() {
     setError('')
 
     const fd = new FormData(e.currentTarget)
+    const name = fd.get('name') as string
+    const email = fd.get('email') as string
+    const service = fd.get('service') as string
+    const messageText = fd.get('message') as string
     const body = {
-      name: fd.get('name') as string,
-      email: fd.get('email') as string,
-      message: `Service: ${fd.get('service')}\n\nProject details:\n${fd.get('message')}`,
+      name,
+      email,
+      message: `Service: ${service}\n\nProject details:\n${messageText}`,
     }
 
     try {
@@ -35,7 +49,13 @@ export function ContactForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
       })
+
       if (res.ok) {
+        const data = await res.json()
+        if (data.mailto) {
+          // No Resend key configured — open mailto: fallback
+          window.location.href = buildMailtoLink(name, email, service, messageText)
+        }
         setStatus('success')
       } else {
         const data = await res.json()
@@ -43,8 +63,9 @@ export function ContactForm() {
         setStatus('error')
       }
     } catch {
-      setError('Network error. Please try again.')
-      setStatus('error')
+      // Network error — open mailto: directly
+      window.location.href = buildMailtoLink(name, email, service, messageText)
+      setStatus('success')
     }
   }
 
@@ -169,6 +190,16 @@ export function ContactForm() {
           <><Send className="h-4 w-4" /> Send Message</>
         )}
       </button>
+
+      <p className="text-xs text-center" style={{ color: 'var(--fg-faint)' }}>
+        Or email us directly at{' '}
+        <a
+          href={`mailto:${CONTACT_EMAIL}`}
+          style={{ color: 'var(--accent)' }}
+        >
+          {CONTACT_EMAIL}
+        </a>
+      </p>
     </form>
   )
 }
